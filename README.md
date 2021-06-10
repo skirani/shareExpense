@@ -1,10 +1,11 @@
 # shareExpense
 This is a simple server implementation for few RESTful endpoints for an expense adding, settling and viewing utility.
-It connects to a MySql DB on port 5000 on the backend to fetch data.
+It connects to a MySql DB on port 5000 on the backend to fetch data using Express.
 
 ## To run this:
 - Run `node server.js` from the path where this server file is located.
 - Use a client such as Postman/cURL etc to send requests to the respective URL's to get the data.
+- Make sure Node & Express are installed (Else - get Node, then do a ` npm install express --save`)
 
 ## What can it be used for:
 1. Add new users to the database
