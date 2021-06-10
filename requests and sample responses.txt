@@ -1,0 +1,71 @@
+// Add a user: 
+curl --location --request POST 'localhost:5000/users/add' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'user_name=Jon Snow'
+
+// Get all users
+curl --location --request GET 'localhost:5000/users/'
+Result:
+{
+    "10": "Jon Snow",
+    "11": "Walter White",
+    "12": "Rajkumar",
+    "13": "Mogambo",
+    "14": "Chander Bing"
+}
+
+// Get a user:
+curl --location --request GET 'localhost:5000/users/friends/10'
+Result:
+{
+    "user": {
+        "user_id": 10,
+        "fetch_user": "<example_server>/users/10"
+    },
+    "friends": [
+        "andy",
+        "donna"
+    ]
+}
+
+// Add an expense for the a user:
+curl --location --request POST 'localhost:5000/expense/add' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'user=10' \
+--data-urlencode 'amount=1000' \
+--data-urlencode 'description=pasta' \
+--data-urlencode 'friends=donna|andy'
+
+// Settle an expense between friends.
+curl --location --request POST 'localhost:5000/expense/settle' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'user=10' \
+--data-urlencode 'tr_id=1'
+
+// Get the activity(dashboard) for a user.
+curl --location --request GET 'localhost:5000/dashboard' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'user=10'
+Result:
+{
+    "user": {
+        "user_id": 10,
+        "fetch_user": "<example_server>/users/10"
+    },
+    "total_amount_owed_to_user": 333,
+    "total_amount_settled_to_user": 333
+}
+
+// Get all friends of a user.
+curl --location --request GET 'localhost:5000/users/friends/10'
+Result:
+{
+    "user": {
+        "user_id": 10,
+        "fetch_user": "<example_server>/users/10"
+    },
+    "friends": [
+        "Andy",
+        "Donna"
+    ]
+}
